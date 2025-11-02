@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Danke fürs Testen!</title>
+<link rel="icon" type="image/png" href="vivevo.png" />
+<style>
+  :root {
+    --highlight: #107b83;
+    --bg-light: #f9f9f9;
+    --text-dark: #333;
+    --box-bg: #fff;
+    --box-hover: #e0f0f0;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 1.5em;
+    background: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+  }
+  h1 {
+    color: var(--highlight);
+    font-weight: 700;
+    margin-bottom: 0.8em;
+    text-align: center;
+  }
+  p {
+    margin-bottom: 1.1em;
+  }
+  ul {
+    padding-left: 1.5em;
+    margin-bottom: 1.5em;
+  }
+  ul li {
+    margin-bottom: 0.5em;
+  }
+  a {
+    color: var(--highlight);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  .highlight-text {
+    color: var(--highlight);
+    font-weight: 700;
+  }
+  .content-container {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .intro-text {
+    margin-bottom: 1.5em;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  .app-section {
+    background: var(--box-bg);
+    border: 3px solid var(--highlight);
+    border-radius: 14px;
+    padding-top: 0.5em;    /* mehr oben */
+    padding-bottom: 0.1em; /* mehr unten */
+    padding-left: 1.0em;   /* weniger links */
+    padding-right: 0.8em;  /* weniger rechts */
+    margin-bottom: 2.0em;
+    max-width: 700px;
+    display: flex;
+    gap: 1.5em;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 14px rgb(16 123 131 / 0.15);
+    transition: box-shadow 0.3s ease;
+  }
+  .app-section:hover {
+    box-shadow: 0 8px 30px rgba(16, 123, 131, 0.35);
+  }
+  .app-icon {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    border-radius: 12px;
+    flex-shrink: 0;
+  }
+  .app-name {
+    font-size: 1.8rem;
+    margin-bottom: 0.6em;
+    color: var(--highlight);
+    font-weight: 800;
+  }
+  .app-description {
+    flex: 1;
+  }
+  .link-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.3rem;
+    justify-content: center;
+    margin: 3em 0 2em;
+  }
+  .link-box {
+    background: var(--box-bg);
+    border: 3px solid var(--highlight);
+    border-radius: 12px;
+    flex: 1 1 220px;
+    max-width: 300px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0.8em;     /* mehr oben */
+    padding-bottom: 0.5em;
+    padding-left: 0.5em;    /* weniger links */
+    padding-right: 0.5em;   /* weniger rechts */
+  }
+  .link-box:hover {
+    background-color: var(--box-hover);
+    box-shadow: 0 8px 20px rgba(16, 123, 131, 0.35);
+  }
+  .link-box img {
+    width: 160px;
+    height: 160px;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-bottom: 1em;
+    flex-shrink: 0;
+  }
+  .link-box .title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--highlight);
+  }
+  .footer {
+    font-size: 0.9rem;
+    color: #555;
+    max-width: 720px;
+    margin: 3em auto 0 auto;
+    padding: 0 1em;
+    text-align: left;
+    line-height: 1.5;
+  }
+  .footer small {
+    font-style: italic;
+    margin-top: 0.8em;
+    display: block;
+    color: var(--highlight);
+  }
+  @media (max-width: 480px) {
+    body {
+      margin: 1em;
+    }
+    .app-section {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .app-icon {
+      width: 100%;
+      max-width: 120px;
+      height: auto;
+      margin-bottom: 1em;
+    }
+    .link-boxes {
+      flex-direction: column;
+      gap: 1.8rem;
+      margin: 2em 0;
+    }
+  }
+  .tooltip {
+    position: relative;
+    cursor: pointer;
+    border-bottom: 1px dotted var(--highlight);
+  }
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 260px;
+    background-color: var(--highlight);
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 0.5em;
+    position: absolute;
+    z-index: 10;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.95rem;
+    pointer-events: none;
+  }
+  .tooltip:hover .tooltiptext,
+  .tooltip:focus .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+</style>
+</head>
+<body>
+
+<h1>Deine Unterstützung für zwei Android-Apps</h1>
+
+<div class="content-container">
+
+  <p class="intro-text">Vielen Dank, dass du dich bereit erklärst, eine oder beide meiner Apps zu testen.</p>
+
+  <div class="app-section">
+    <img src="vivevo.png" alt="vivevo Icon" class="app-icon" />
+    <div class="app-description">
+      <div class="app-name">vivevo</div>
+      <p>Ein einfacher Tracker, mit dem du Stimmung, Energie oder Produktivität über die Zeit erfassen und bequem auswerten kannst.</p>
+    </div>
+  </div>
+
+  <div class="app-section">
+    <img src="FOCUSQUARE.png" alt="FOCUSQUARE Icon" class="app-icon" />
+    <div class="app-description">
+      <div class="app-name">FOCUSQUARE</div>
+      <p>Ein benutzerfreundliches Produktivitäts-Tool, das bis zu 8 
+        <span class="tooltip">Fokus-Timer (<translate>Pomodoro-Timer</translate>)
+          <span class="tooltiptext">Ein Zeitmanagement-Tool, bei dem man z.B. 25 Minuten konzentriert an einer Aufgabe arbeitet.</span>
+        </span> 
+        bietet. Starte deine Timer blitzschnell direkt vom Homescreen dank praktischer Widgets und behalte deinen Fortschritt im Blick.
+      </p>
+    </div>
+  </div>
+
+  <p>Es gibt kein Testprotokoll – probiere die Apps so oft und so lang aus, wie es dir passt. Feedback gern per E-Mail (<a href="mailto:r@42.ai">r@42.ai</a>), persönlich oder telefonisch. Besonders interessieren mich:</p>
+
+  <ul>
+    <li>Funktioniert alles reibungslos oder gibt es Bugs?</li>
+    <li>Sind Texte korrekt und verständlich (Deutsch/Englisch)?</li>
+    <li>Ist die Bedienung intuitiv oder eher verwirrend?</li>
+    <li>Sind Abläufe wie erwartet oder etwas unlogisch?</li>
+  </ul>
+
+  <p>Ich werde alle Rückmeldungen sammeln und sorgfältig prüfen. Eure Meinungen sind wertvoll für zukünftige Verbesserungen!</p>
+
+  <p class="highlight-text">Bitte installiert die Apps mindestens 14 Tage, damit Google die Tests als gültig anerkennt. Danke für euer Verständnis!</p>
+
+  <p>Beide Apps bieten ein „Freemium“-Modell: Kernfunktionen sind gratis, Premium-Features kostenpflichtig. Als Tester könnt ihr die Premium-Subscription kostenlos aktivieren (keine echte Kreditkarte nötig, Testkarte voreingestellt). Alternativ nutzt den Promo-Code „T3ST3R“.</p>
+
+  <p class="highlight-text">Downloads (nur mit eurem hinterlegten Google-Account):</p>
+
+  <div class="link-boxes">
+    <a href="https://play.google.com/store/apps/details?id=io.a51.vivevo" class="link-box" target="_blank" rel="noopener noreferrer">
+      <img src="vivevo.png" alt="vivevo App Bild" />
+      <div class="title">vivevo</div>
+    </a>
+    <a href="https://play.google.com/store/apps/details?id=io.a51.focusquare" class="link-box" target="_blank" rel="noopener noreferrer">
+      <img src="FOCUSQUARE.png" alt="FOCUSQUARE App Bild" />
+      <div class="title">FOCUSQUARE</div>
+    </a>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>Vielen Dank im Voraus für deine Unterstützung!<br />Raphael</p>
+</div>
+
+</body>
+</html>
