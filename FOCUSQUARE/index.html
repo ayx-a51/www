@@ -52,11 +52,19 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--white);outline-off
 
 /* ---------- hero ---------- */
 .hero{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,5vw,72px);align-items:center;padding-block:clamp(40px,7vw,110px)}
-.hero h1{font-size:clamp(3.4rem,10.5vw,8.6rem);font-weight:900;line-height:.88;letter-spacing:-.035em;text-transform:uppercase}
-.hero h1 .hollow{color:var(--white)}
+/* Crossword wordmark: FOCUS across, SQUARE down, sharing the S (in a red
+   app-style tile). The tagline and CTA fill the hole left of the vertical
+   word — .heroLeft owns the grid, the h1 contributes its letter cells via
+   display:contents, and .heroCopy occupies columns 1-4 under row 1. */
+.heroLeft{--cell:clamp(48px,7vw,82px);--cgap:clamp(6px,.9vw,12px);display:grid;grid-template-columns:repeat(5,var(--cell));grid-auto-rows:var(--cell);gap:var(--cgap)}
+.xword{display:contents}
+.xword b{font-weight:900;font-size:calc(var(--cell)*.78);line-height:1;display:grid;place-items:center;color:var(--white)}
+.xword .s{background:var(--red);border-radius:22%}
+.xword .q{grid-column:5}
 @supports ((-webkit-text-stroke:2px #fff)){
-  .hero h1 .hollow{color:transparent;-webkit-text-stroke:clamp(1.5px,.28vw,3px) var(--white)}
+  .xword .q{color:transparent;-webkit-text-stroke:max(1.5px,calc(var(--cell)*.032)) var(--white)}
 }
+.heroCopy{grid-column:1/5;grid-row:2/7;align-self:start;padding-top:clamp(10px,1.6vw,26px);padding-right:clamp(8px,1.4vw,22px)}
 .tag{margin-top:clamp(18px,2.6vw,30px);color:var(--gray);font-size:clamp(1rem,1.6vw,1.25rem);max-width:34ch}
 .pitch{margin-top:.9em;font-weight:900;text-transform:uppercase;letter-spacing:.04em;font-size:clamp(1.15rem,2.2vw,1.6rem)}
 .play{display:inline-flex;align-items:center;gap:.7em;margin-top:clamp(22px,3vw,36px);background:var(--white);color:#0C0C0C;text-decoration:none;font-weight:900;text-transform:uppercase;letter-spacing:.08em;font-size:clamp(.92rem,1.4vw,1.05rem);padding:1em 1.5em;border-radius:16px}
@@ -150,6 +158,9 @@ footer .copy{margin-left:auto;color:var(--gray);font-size:.92rem}
 /* ---------- responsive ---------- */
 @media (max-width:900px){
   .hero{grid-template-columns:1fr;padding-block:clamp(28px,6vw,60px)}
+  /* Stacked hero: letter cells scale to the content width, so the copy
+     hole beside the vertical word stays wide enough to read in. */
+  .heroLeft{--cell:min(82px,calc((100vw - 2*clamp(20px,5vw,48px) - 4*var(--cgap))/5))}
   .hero-art{grid-template-columns:repeat(3,1fr)}
   .steps{grid-template-columns:1fr;gap:26px}
   .step{display:grid;grid-template-columns:110px 1fr;gap:18px;align-items:center}
@@ -174,12 +185,14 @@ footer .copy{margin-left:auto;color:var(--gray);font-size:.92rem}
 <main>
 
   <section class="wrap hero" aria-label="Introduction">
-    <div>
-      <h1>Focus<br><span class="hollow">Square</span></h1>
-      <p class="tag">Simple focus timer with 8 customizable presets and cross-device sync.</p>
-      <p class="pitch">One tap. Full focus.</p>
-      <a class="play" href="https://play.google.com/store/apps/details?id=io.a51.focusquare"><span class="tri" aria-hidden="true"></span>Get it on Google&nbsp;Play</a>
-      <p class="free">Free &middot; Android &middot; In&#8209;app purchases</p>
+    <div class="heroLeft">
+      <h1 class="xword" aria-label="FOCUSQUARE"><b aria-hidden="true">F</b><b aria-hidden="true">O</b><b aria-hidden="true">C</b><b aria-hidden="true">U</b><b class="s" aria-hidden="true">S</b><b class="q" aria-hidden="true">Q</b><b class="q" aria-hidden="true">U</b><b class="q" aria-hidden="true">A</b><b class="q" aria-hidden="true">R</b><b class="q" aria-hidden="true">E</b></h1>
+      <div class="heroCopy">
+        <p class="tag">Simple focus timer with 8 customizable presets and cross-device sync.</p>
+        <p class="pitch">One tap. Full focus.</p>
+        <a class="play" href="https://play.google.com/store/apps/details?id=io.a51.focusquare"><span class="tri" aria-hidden="true"></span>Get it on Google&nbsp;Play</a>
+        <p class="free">Free &middot; Android &middot; In&#8209;app purchases</p>
+      </div>
     </div>
     <div class="hero-art" aria-hidden="true">
       <div class="hsq c-red"><span>45'</span></div>
