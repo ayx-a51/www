@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FOCUSQUARE — focus timer</title>
+<meta name="description" content="FOCUSQUARE — simple focus timer for Android with 8 customizable presets and cross-device sync. One tap. Full focus.">
+<meta name="theme-color" content="#0C0C0C">
+<meta property="og:title" content="FOCUSQUARE — focus timer">
+<meta property="og:description" content="Simple focus timer with 8 customizable presets and cross-device sync. One tap. Full focus.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://a51.io/FOCUSQUARE/">
+<link rel="icon" href="FOCUSQUARE.svg">
+<style>
+:root{
+  --bg:#0C0C0C;
+  --maroon:#800000;
+  --red:#B71C1C;
+  --blue:#0D47A1;
+  --gold:#B8860B;
+  --green:#079E69;
+  --teal:#079B8C;
+  --dgreen:#1B5E20;
+  --white:#FFFFFF;
+  --gray:#9D9D9D;
+  --line:#262626;
+  --panel:#141414;
+  --r:20%;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+html,body{overflow-x:hidden;overflow-x:clip}
+body{
+  background:var(--bg);
+  color:var(--white);
+  font-family:-apple-system,"Segoe UI",system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  line-height:1.4;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+a:focus-visible,summary:focus-visible{outline:3px solid var(--white);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:clamp(20px,5vw,48px)}
+
+/* ---------- header ---------- */
+.top{display:flex;align-items:center;gap:14px;padding-block:clamp(16px,2.5vw,28px)}
+.top img{width:clamp(38px,4vw,46px);height:auto}
+.top .name{font-weight:900;letter-spacing:.06em;font-size:clamp(1rem,2vw,1.2rem)}
+.top .toplink{margin-left:auto;color:var(--gray);text-decoration:none;font-weight:700;font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);border-radius:12px;padding:.55em 1em;white-space:nowrap}
+.top .toplink:hover{color:var(--white);border-color:var(--white)}
+
+/* ---------- hero ---------- */
+.hero{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,5vw,72px);align-items:center;padding-block:clamp(40px,7vw,110px)}
+.hero h1{font-size:clamp(3.4rem,10.5vw,8.6rem);font-weight:900;line-height:.88;letter-spacing:-.035em;text-transform:uppercase}
+.hero h1 .hollow{color:var(--white)}
+@supports ((-webkit-text-stroke:2px #fff)){
+  .hero h1 .hollow{color:transparent;-webkit-text-stroke:clamp(1.5px,.28vw,3px) var(--white)}
+}
+.tag{margin-top:clamp(18px,2.6vw,30px);color:var(--gray);font-size:clamp(1rem,1.6vw,1.25rem);max-width:34ch}
+.pitch{margin-top:.9em;font-weight:900;text-transform:uppercase;letter-spacing:.04em;font-size:clamp(1.15rem,2.2vw,1.6rem)}
+.play{display:inline-flex;align-items:center;gap:.7em;margin-top:clamp(22px,3vw,36px);background:var(--white);color:#0C0C0C;text-decoration:none;font-weight:900;text-transform:uppercase;letter-spacing:.08em;font-size:clamp(.92rem,1.4vw,1.05rem);padding:1em 1.5em;border-radius:16px}
+.play .tri{width:0;height:0;border-left:.75em solid #0C0C0C;border-top:.48em solid transparent;border-bottom:.48em solid transparent}
+.play:hover{background:var(--red);color:var(--white)}
+.play:hover .tri{border-left-color:var(--white)}
+.free{margin-top:14px;color:var(--gray);font-size:.88rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+
+.hero-art{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.8vw,22px)}
+.hero-art::before{content:"";position:absolute;inset:-14%;background:radial-gradient(closest-side,rgba(128,0,0,.55),transparent 72%);z-index:-1;pointer-events:none}
+.hero-art .hsq{position:relative;aspect-ratio:1;border-radius:var(--r)}
+.hero-art .hsq span{position:absolute;top:9%;right:11%;font-weight:800;font-size:clamp(1.2rem,2vw,1.5rem)}
+
+/* generic colored square */
+.c-red{background:var(--red)} .c-blue{background:var(--blue)} .c-gold{background:var(--gold)}
+.c-green{background:var(--green)} .c-teal{background:var(--teal)} .c-dgreen{background:var(--dgreen)}
+.c-maroon{background:var(--maroon)}
+
+/* ---------- section kicker ---------- */
+section{padding-block:clamp(48px,7vw,104px)}
+.kicker{display:flex;align-items:baseline;gap:.6em;border-top:5px solid var(--white);padding-top:16px;margin-bottom:clamp(30px,4.5vw,60px);font-weight:900;text-transform:uppercase;letter-spacing:.1em;font-size:clamp(1.5rem,3.4vw,2.4rem)}
+.kicker .n{font-size:.62em;letter-spacing:.14em}
+/* text-only red: the tile red fails contrast at numeral size on this bg */
+.n-red{color:#E53935} .n-gold{color:var(--gold)} .n-teal{color:var(--teal)}
+.ticks{margin-left:auto;display:flex;gap:6px;align-self:center}
+.ticks i{width:10px;height:10px;border-radius:3px;display:block}
+
+/* ---------- method ---------- */
+.steps{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3vw,36px)}
+.step .art{aspect-ratio:1;border-radius:var(--r);background:var(--panel);border:1px solid var(--line);display:grid;place-items:center;margin-bottom:18px}
+.step .mini{display:grid;grid-template-columns:1fr 1fr;gap:12%;width:52%;aspect-ratio:1}
+.step .mini i{display:block;border-radius:var(--r);aspect-ratio:1}
+.step .solo{width:52%;aspect-ratio:1;border-radius:var(--r);display:grid;place-items:center;font-weight:800;font-size:clamp(1.1rem,2.2vw,1.7rem);letter-spacing:.02em}
+.step .pause{display:flex;gap:18%;width:24%;aspect-ratio:1.4;align-items:stretch;justify-content:center}
+.step .pause i{display:block;width:34%;background:var(--white);border-radius:6px}
+.step .num{color:var(--gray);font-weight:900;font-size:clamp(.85rem,1.3vw,1rem);letter-spacing:.16em}
+.step h3{font-weight:900;text-transform:uppercase;font-size:clamp(1.15rem,2vw,1.5rem);letter-spacing:.02em;margin-top:.2em}
+.step p{color:var(--gray);font-size:clamp(.95rem,1.4vw,1.05rem);margin-top:.35em}
+
+/* details */
+details{border:1px solid var(--line);border-radius:16px;margin-top:clamp(26px,4vw,44px);background:var(--panel)}
+details summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:.7em;font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:.95rem;padding:1em 1.2em}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:"+" / "";font-weight:900;font-size:1.3em;line-height:1;width:1em;text-align:center;flex:none}
+details[open] summary::before{content:"\2212" / ""}
+details .dbody{padding:0 1.2em 1.2em 3em;color:#A9A9A9;font-size:.97rem;max-width:70ch}
+
+/* ---------- features ---------- */
+.tiles{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3vw,34px)}
+.tiles .sq{aspect-ratio:1;border-radius:var(--r);display:grid;place-items:center}
+.tiles .sq svg{width:42%;height:42%;fill:var(--white)}
+.tiles h3{font-weight:900;text-transform:uppercase;font-size:clamp(1rem,1.5vw,1.15rem);letter-spacing:.02em;margin-top:14px}
+.tiles p{color:var(--gray);font-size:clamp(.9rem,1.3vw,.98rem);margin-top:.3em}
+.tiles p strong{color:var(--white);font-weight:900;letter-spacing:.04em;font-size:.82em}
+@media (prefers-reduced-motion:no-preference){
+  .tiles .sq,.hero-art .hsq{transition:transform .18s ease}
+  .feat:hover .sq,.hero-art .hsq:hover{transform:translateY(-5px)}
+}
+.plus{margin-top:clamp(26px,4vw,44px);border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:1.1em 1.3em;color:var(--gray);font-size:.97rem}
+.plus strong{color:var(--white);font-weight:900;letter-spacing:.04em}
+
+/* ---------- notification band ---------- */
+.band{border-radius:24px;background:linear-gradient(135deg,rgba(128,0,0,.32),rgba(128,0,0,.06) 55%,transparent),var(--panel);border:1px solid var(--line);padding:clamp(28px,4.5vw,56px);text-align:center;margin-bottom:clamp(30px,4.5vw,60px)}
+.band h3{font-size:clamp(1.5rem,3.2vw,2.3rem);font-weight:900;letter-spacing:-.01em}
+.band p{color:var(--gray);margin-top:.6em;font-size:clamp(.95rem,1.4vw,1.05rem);max-width:52ch;margin-inline:auto}
+.band img{max-width:620px;width:100%;margin:clamp(20px,3vw,32px) auto 0;border-radius:16px}
+
+/* ---------- screens ---------- */
+.shots{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,2.4vw,28px);align-items:start}
+figure{margin:0}
+.shot .panelbox{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:clamp(10px,1.4vw,16px)}
+.shot img{width:100%;border-radius:16px;aspect-ratio:480/1026;object-fit:cover}
+.shot figcaption{color:var(--gray);font-weight:800;text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;margin-top:12px}
+
+/* ---------- cta ---------- */
+.cta h2{font-size:clamp(2.6rem,8.5vw,6.6rem);font-weight:900;line-height:.92;letter-spacing:-.03em;text-transform:uppercase}
+.cta h2 .hollow{color:var(--white)}
+@supports ((-webkit-text-stroke:2px #fff)){
+  .cta h2 .hollow{color:transparent;-webkit-text-stroke:clamp(1.5px,.24vw,2.5px) var(--white)}
+}
+.cta .play{margin-top:clamp(24px,3.4vw,40px)}
+
+/* ---------- footer ---------- */
+footer{border-top:5px solid var(--white);padding-block:clamp(28px,4vw,48px);margin-top:clamp(30px,5vw,70px)}
+footer .frow{display:flex;flex-wrap:wrap;align-items:center;gap:18px clamp(20px,3vw,36px)}
+footer img{width:34px;height:auto}
+footer a{color:var(--gray);text-decoration:none;font-size:.92rem;display:inline-block;padding-block:.55em}
+footer a:hover{color:var(--white);text-decoration:underline}
+footer .copy{margin-left:auto;color:var(--gray);font-size:.92rem}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;padding-block:clamp(28px,6vw,60px)}
+  .hero-art{grid-template-columns:repeat(3,1fr)}
+  .steps{grid-template-columns:1fr;gap:26px}
+  .step{display:grid;grid-template-columns:110px 1fr;gap:18px;align-items:center}
+  .step .art{margin-bottom:0}
+  .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .shots{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ticks{display:none}
+}
+@media (max-width:420px){
+  .top .toplink{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap top">
+  <img src="FOCUSQUARE.svg" alt="" width="46" height="46">
+  <span class="name">FOCUSQUARE</span>
+  <a class="toplink" href="https://play.google.com/store/apps/details?id=io.a51.focusquare">Google&nbsp;Play</a>
+</header>
+
+<main>
+
+  <section class="wrap hero" aria-label="Introduction">
+    <div>
+      <h1>Focus<br><span class="hollow">Square</span></h1>
+      <p class="tag">Simple focus timer with 8 customizable presets and cross-device sync.</p>
+      <p class="pitch">One tap. Full focus.</p>
+      <a class="play" href="https://play.google.com/store/apps/details?id=io.a51.focusquare"><span class="tri" aria-hidden="true"></span>Get it on Google&nbsp;Play</a>
+      <p class="free">Free &middot; Android &middot; In&#8209;app purchases</p>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="hsq c-red"><span>45'</span></div>
+      <div class="hsq c-blue"><span>30'</span></div>
+      <div class="hsq c-gold"><span>60'</span></div>
+      <div class="hsq c-green"><span>25'</span></div>
+      <div class="hsq c-teal"><span>20'</span></div>
+      <div class="hsq c-dgreen"><span>40'</span></div>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="k-method">
+    <h2 class="kicker" id="k-method"><span class="n n-red">01</span> The method
+      <span class="ticks" aria-hidden="true"><i class="c-red"></i><i class="c-blue"></i><i class="c-gold"></i><i class="c-green"></i><i class="c-teal"></i><i class="c-dgreen"></i></span>
+    </h2>
+    <ol class="steps">
+      <li class="step">
+        <div class="art" aria-hidden="true">
+          <div class="mini"><i class="c-red"></i><i class="c-blue"></i><i class="c-gold"></i><i class="c-green"></i></div>
+        </div>
+        <div>
+          <span class="num">STEP 1</span>
+          <h3>Pick a square</h3>
+          <p>25–60 minutes. Yours to set.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="art" aria-hidden="true">
+          <div class="solo c-red">25:00</div>
+        </div>
+        <div>
+          <span class="num">STEP 2</span>
+          <h3>Single-task</h3>
+          <p>One thing until the alarm.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="art" aria-hidden="true">
+          <div class="pause"><i></i><i></i></div>
+        </div>
+        <div>
+          <span class="num">STEP 3</span>
+          <h3>Break. Repeat.</h3>
+          <p>Step away, then go again.</p>
+        </div>
+      </li>
+    </ol>
+    <details>
+      <summary>Why squares work</summary>
+      <div class="dbody">
+        <p>A fixed square turns "work on it" into a commitment you can actually finish, and the countdown gives the session a tangible end. That end is what protects deep work — one task owns the square, everything else waits. Each completed square is also a recorded win, and the record adds up.</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="wrap" aria-labelledby="k-features">
+    <h2 class="kicker" id="k-features"><span class="n n-gold">02</span> Features
+      <span class="ticks" aria-hidden="true"><i class="c-red"></i><i class="c-blue"></i><i class="c-gold"></i><i class="c-green"></i><i class="c-teal"></i><i class="c-dgreen"></i></span>
+    </h2>
+    <ul class="tiles">
+      <li class="feat">
+        <div class="sq c-red"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13.5" r="3.5"/><path d="M12 4a8 8 0 0 1 8 8h-2a6 6 0 0 0-12 0H4a8 8 0 0 1 8-8z"/></svg></div>
+        <h3>One-tap presets</h3>
+        <p>Tap a square — it's running.</p>
+      </li>
+      <li class="feat">
+        <div class="sq c-blue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></div>
+        <h3>Distraction-free</h3>
+        <p>Fullscreen color. No text. No clutter.</p>
+      </li>
+      <li class="feat">
+        <div class="sq c-gold"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg></div>
+        <h3>Home-screen widgets</h3>
+        <p>Start without opening the app. <strong>FOCUSQUARE+</strong></p>
+      </li>
+      <li class="feat">
+        <div class="sq c-green"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a2 2 0 0 0 2-2h-4a2 2 0 0 0 2 2zm6-6v-5a6 6 0 0 0-5-5.91V4a1 1 0 1 0-2 0v1.09A6 6 0 0 0 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
+        <h3>Live notification</h3>
+        <p>Countdown and progress in the shade.</p>
+      </li>
+      <li class="feat">
+        <div class="sq c-teal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h3v8H4zM10.5 4h3v16h-3zM17 8h3v12h-3z"/></svg></div>
+        <h3>Statistics</h3>
+        <p>Day to all-time. Minutes or sessions.</p>
+      </li>
+      <li class="feat">
+        <div class="sq c-dgreen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4V1L8 5l4 4V6a6 6 0 0 1 5.65 8.03l1.46 1.46A8 8 0 0 0 12 4zm0 14a6 6 0 0 1-5.65-8.03L4.89 8.51A8 8 0 0 0 12 20v3l4-4-4-4v3z"/></svg></div>
+        <h3>Cross-device sync</h3>
+        <p>Optional sign-in. Guest mode works fully.</p>
+      </li>
+    </ul>
+    <p class="plus"><strong>FOCUSQUARE+</strong> — eight timers instead of four, more colors and icons, full history, widgets.</p>
+  </section>
+
+  <section class="wrap" aria-labelledby="k-app">
+    <h2 class="kicker" id="k-app"><span class="n n-teal">03</span> The app
+      <span class="ticks" aria-hidden="true"><i class="c-red"></i><i class="c-blue"></i><i class="c-gold"></i><i class="c-green"></i><i class="c-teal"></i><i class="c-dgreen"></i></span>
+    </h2>
+    <div class="band">
+      <h3>The timer lives in your notification&nbsp;shade.</h3>
+      <p>Countdown and progress right in the notification — pause and resume from there. It keeps counting even if the app is killed, and rings an exact alarm at the end.</p>
+      <img src="img/shot-notification.png" width="720" height="265" alt="Live notification with a 41:28 countdown, progress bar and a Pause action">
+    </div>
+    <div class="shots">
+      <figure class="shot">
+        <div class="panelbox"><img src="img/shot-grid.png" width="480" height="1026" alt="App home screen: six colored timer squares labeled 45, 30, 60, 25, 20 and 40 minutes" loading="lazy"></div>
+        <figcaption>The whole app</figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="panelbox"><img src="img/shot-timer.png" width="480" height="1026" alt="Fullscreen running timer: 44:55 in white on solid red, with pause and stop buttons" loading="lazy"></div>
+        <figcaption>Running</figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="panelbox"><img src="img/shot-stats.png" width="480" height="1026" alt="Weekly statistics: bar chart with one colored bar per timer, showing completed sessions" loading="lazy"></div>
+        <figcaption>Stats</figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="panelbox"><img src="img/shot-widgets.jpg" width="480" height="1066" alt="Android home screen with two FOCUSQUARE widgets: a green 25-minute and a red 45-minute square" loading="lazy"></div>
+        <figcaption>Widgets</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="wrap cta" aria-label="Download">
+    <h2>One tap.<br><span class="hollow">Full focus.</span></h2>
+    <a class="play" href="https://play.google.com/store/apps/details?id=io.a51.focusquare"><span class="tri" aria-hidden="true"></span>Get it on Google&nbsp;Play</a>
+    <p class="free">Free &middot; Android &middot; In&#8209;app purchases</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap frow">
+    <img src="FOCUSQUARE.svg" alt="FOCUSQUARE logo" width="34" height="34">
+    <a href="privacy.html">Privacy</a>
+    <a href="data_deletion.html">Data deletion</a>
+    <a href="mailto:ayx@a51.io">ayx@a51.io</a>
+    <span class="copy">© <a href="https://a51.io">A51</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
