@@ -81,13 +81,15 @@ a:focus-visible{outline:3px solid var(--white);outline-offset:3px;border-radius:
 .card a{color:var(--white);text-decoration:underline;text-underline-offset:2px}
 .card a:hover{color:var(--gray)}
 
-/* Callout, using the landing page's maroon wash. */
+/* Callout. Solid maroon — the design uses flat colour throughout. */
 .note{
-  background:linear-gradient(135deg,rgba(128,0,0,.32),rgba(128,0,0,.06) 55%,transparent),var(--panel);
-  border:1px solid var(--line);border-radius:14px;
+  background:var(--maroon);
+  border:1px solid var(--maroon);border-radius:14px;
   padding:clamp(16px,2.4vw,22px);margin-top:1.5em;
 }
-.note p{margin-top:0;color:#C4C4C4}
+.note p{margin-top:0;color:#F3DADA}
+.note strong{color:var(--white)}
+.note a{color:var(--white)}
 .note p + p{margin-top:.7em}
 
 code{
