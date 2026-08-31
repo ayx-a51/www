@@ -71,7 +71,9 @@ a{color:inherit;text-decoration:none}
   font-weight:700;
   max-width:16ch;
 }
-.hero h1 em{font-style:italic;color:var(--green-ink)}
+/* <em> carries the emphasis semantically; the green accent shows it, so the
+   italic is not needed on top. */
+.hero h1 em{font-style:normal;color:var(--green-ink)}
 .hero .lede{
   margin-top:clamp(20px,3vw,30px);
   font-size:clamp(1.05rem,2.1vw,1.3rem);
