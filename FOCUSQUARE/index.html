@@ -68,6 +68,15 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--white);outline-off
 @supports ((-webkit-text-stroke:2px #fff)){
   .xword .q{color:transparent;-webkit-text-stroke:max(1.5px,calc(var(--cell)*.032)) var(--white)}
 }
+/* A centered stroke over a transparent fill draws both edges of every stem, so
+   the inner edges meet and cross inside letters that join -- the A bar, the R
+   leg, the Q tail, the E arms. That tangle is what showed on Android Chrome.
+   Painting the stroke first and then filling the glyph in the page color hides
+   the inner half, leaving one clean outline per letter; the width is doubled
+   because only the outer half now shows. */
+@supports ((-webkit-text-stroke:2px #fff) and (paint-order:stroke)){
+  .xword .q{color:var(--bg);-webkit-text-stroke:max(3px,calc(var(--cell)*.064)) var(--white);paint-order:stroke fill}
+}
 .heroCopy{grid-column:1/5;grid-row:2/7;align-self:start;padding-top:clamp(10px,1.6vw,26px);padding-right:clamp(8px,1.4vw,22px)}
 .tag{margin-top:clamp(18px,2.6vw,30px);color:var(--gray);font-size:clamp(1rem,1.6vw,1.25rem);max-width:34ch}
 .pitch{margin-top:.9em;font-weight:900;text-transform:uppercase;letter-spacing:.04em;font-size:clamp(1.15rem,2.2vw,1.6rem)}
@@ -89,9 +98,9 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--white);outline-off
 /* ---------- section kicker ---------- */
 section{padding-block:clamp(48px,7vw,104px)}
 .kicker{display:flex;align-items:baseline;gap:.6em;border-top:5px solid var(--white);padding-top:16px;margin-bottom:clamp(30px,4.5vw,60px);font-weight:900;text-transform:uppercase;letter-spacing:.1em;font-size:clamp(1.5rem,3.4vw,2.4rem)}
-.kicker .n{font-size:.62em;letter-spacing:.14em}
-/* text-only red: the tile red fails contrast at numeral size on this bg */
-.n-red{color:#E53935} .n-gold{color:var(--gold)} .n-teal{color:var(--teal)}
+/* Section accent, in place of the old 01/02/03 numeral. As a filled tile it
+   can carry the real app red, which was too dark to read as a numeral here. */
+.kicker .n{width:.62em;height:.62em;border-radius:22%;flex:none;align-self:center}
 .ticks{margin-left:auto;display:flex;gap:6px;align-self:center}
 .ticks i{width:10px;height:10px;border-radius:3px;display:block}
 
@@ -147,6 +156,9 @@ figure{margin:0}
 .cta h2 .hollow{color:var(--white)}
 @supports ((-webkit-text-stroke:2px #fff)){
   .cta h2 .hollow{color:transparent;-webkit-text-stroke:clamp(1.5px,.24vw,2.5px) var(--white)}
+}
+@supports ((-webkit-text-stroke:2px #fff) and (paint-order:stroke)){
+  .cta h2 .hollow{color:var(--bg);-webkit-text-stroke:clamp(3px,.48vw,5px) var(--white);paint-order:stroke fill}
 }
 .cta .play{margin-top:clamp(24px,3.4vw,40px)}
 
@@ -208,7 +220,7 @@ footer .copy{margin-left:auto;color:var(--gray);font-size:.92rem}
   </section>
 
   <section class="wrap" aria-labelledby="k-method">
-    <h2 class="kicker" id="k-method"><span class="n n-red">01</span> The method
+    <h2 class="kicker" id="k-method"><span class="n c-red" aria-hidden="true"></span>The method
       <span class="ticks" aria-hidden="true"><i class="c-red"></i><i class="c-blue"></i><i class="c-gold"></i><i class="c-green"></i><i class="c-teal"></i><i class="c-dgreen"></i></span>
     </h2>
     <ol class="steps">
@@ -252,7 +264,7 @@ footer .copy{margin-left:auto;color:var(--gray);font-size:.92rem}
   </section>
 
   <section class="wrap" aria-labelledby="k-features">
-    <h2 class="kicker" id="k-features"><span class="n n-gold">02</span> Features
+    <h2 class="kicker" id="k-features"><span class="n c-gold" aria-hidden="true"></span>Features
       <span class="ticks" aria-hidden="true"><i class="c-red"></i><i class="c-blue"></i><i class="c-gold"></i><i class="c-green"></i><i class="c-teal"></i><i class="c-dgreen"></i></span>
     </h2>
     <ul class="tiles">
@@ -291,7 +303,7 @@ footer .copy{margin-left:auto;color:var(--gray);font-size:.92rem}
   </section>
 
   <section class="wrap" aria-labelledby="k-app">
-    <h2 class="kicker" id="k-app"><span class="n n-teal">03</span> The app
+    <h2 class="kicker" id="k-app"><span class="n c-teal" aria-hidden="true"></span>The app
       <span class="ticks" aria-hidden="true"><i class="c-red"></i><i class="c-blue"></i><i class="c-gold"></i><i class="c-green"></i><i class="c-teal"></i><i class="c-dgreen"></i></span>
     </h2>
     <div class="band">
