@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>A51 — mobile apps, made to be used</title>
-<meta name="description" content="We design and build mobile apps end to end. vivevo, QIZU and FOCUSQUARE are on Google Play. Open to interesting collaborations.">
+<meta name="description" content="We design and build mobile apps end to end. vivevo, QIZU, FOCUSQUARE, zoevo, 8ctoMath and SYVT are on Google Play. Open to interesting collaborations.">
 <meta name="theme-color" content="#FBFBF9">
 <meta property="og:title" content="A51 — mobile apps, made to be used">
-<meta property="og:description" content="We design and build mobile apps end to end. vivevo, QIZU and FOCUSQUARE are on Google Play.">
+<meta property="og:description" content="We design and build mobile apps end to end. vivevo, QIZU, FOCUSQUARE, zoevo, 8ctoMath and SYVT are on Google Play.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://a51.io/">
 <meta property="og:image" content="https://a51.io/img/og.png">
@@ -184,6 +184,9 @@ section{padding-block:clamp(40px,6vw,72px)}
   width:100%;height:auto;border-radius:10px;
   border:1px solid var(--line);background:var(--sunken);
 }
+/* Landscape apps: a single wide shot stands in for the filmstrip, and the
+   open card shows four in a 2x2 grid, about the footprint of three portrait shots. */
+.shots.wide{grid-template-columns:repeat(2,minmax(0,1fr))}
 .card .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
 .card .links a{
   font-size:.86rem;font-weight:600;color:var(--ink);
@@ -274,6 +277,7 @@ footer .copy{margin-left:auto}
   .shots{display:flex;overflow-x:auto;gap:10px;padding-bottom:6px;scroll-snap-type:x mandatory}
   /* min-width:auto would clamp each shot to its 400px intrinsic width */
   .shots img{flex:0 0 46%;min-width:0;width:auto;scroll-snap-align:start}
+  .shots.wide img{flex-basis:86%}
 }
 @media (max-width:430px){
   .card .icon{width:48px;height:48px;border-radius:12px}
@@ -414,6 +418,113 @@ footer .copy{margin-left:auto}
       </li>
 
       <li>
+        <details class="card">
+          <summary>
+            <div class="row">
+              <div class="icon"><img src="img/zoevo.webp" alt="zoevo app icon" width="56" height="56"></div>
+              <div class="name">
+                <h3>zoevo</h3>
+                <span class="meta">Android &middot; Free</span>
+              </div>
+              <div class="text">
+                <p class="tag">Habits, focus sessions and routines in one tracker. Set a target to reach, or a cap to stay under.</p>
+                <span class="more">See more</span>
+              </div>
+              <div class="preview" aria-hidden="true">
+                <img src="img/shots/zoevo-1.webp" alt="" width="400" height="889" loading="lazy">
+                <img src="img/shots/zoevo-2.webp" alt="" width="400" height="889" loading="lazy">
+                <img src="img/shots/zoevo-3.webp" alt="" width="400" height="889" loading="lazy">
+              </div>
+              <span class="chev" aria-hidden="true"></span>
+            </div>
+          </summary>
+          <div class="body">
+            <p>Tap a tally, start a stopwatch or run a focus session &mdash; it all counts towards your daily and weekly goals. Routines take you through one step at a time, and the Timeline shows streaks and success rates week by week. It works offline, with no account needed.</p>
+            <div class="shots">
+              <img src="img/shots/zoevo-1.webp" alt="zoevo main screen: coloured tiles for daily goals, weekly goals and routines, with rings, bars and ticks on the goals showing progress" width="400" height="889" loading="lazy">
+              <img src="img/shots/zoevo-2.webp" alt="zoevo workout routine on the push-ups step: 12 of 20 counted and 2:56 of 5:00 elapsed, with all four steps along the top" width="400" height="889" loading="lazy">
+              <img src="img/shots/zoevo-3.webp" alt="zoevo Timeline: a week of daily goals with streak flames and success rates, then weekly goals and routines over the last eight weeks" width="400" height="889" loading="lazy">
+            </div>
+            <div class="links">
+              <a href="https://zoevo.io">zoevo.io</a>
+              <a href="https://play.google.com/store/apps/details?id=io.a51.zoevo">Google&nbsp;Play</a>
+            </div>
+          </div>
+        </details>
+      </li>
+
+      <li>
+        <details class="card">
+          <summary>
+            <div class="row">
+              <div class="icon"><img src="img/8ctomath.webp" alt="8ctoMath app icon" width="56" height="56"></div>
+              <div class="name">
+                <h3>8ctoMath</h3>
+                <span class="meta">Android &middot; Free</span>
+              </div>
+              <div class="text">
+                <p class="tag">A mental maths game for children that adapts as they play. Every quiz is a race against Brainy the squid.</p>
+                <span class="more">See more</span>
+              </div>
+              <div class="preview" aria-hidden="true">
+                <img src="img/shots/8ctomath-1.webp" alt="" width="640" height="360" loading="lazy">
+              </div>
+              <span class="chev" aria-hidden="true"></span>
+            </div>
+          </summary>
+          <div class="body">
+            <p>Adding, taking away, times tables, sharing and big times each keep their own level, and what a child gets wrong comes back more often. Brainy&rsquo;s pace is set by the child&rsquo;s own last few quizzes, so a quick child and a careful one both get a race they can win. No ads, and it plays offline.</p>
+            <div class="shots wide">
+              <img src="img/shots/8ctomath-1.webp" alt="8ctoMath quiz: 7 &times; 4 with five answers to pick from, 8cto the octopus beside it, and the child&rsquo;s turtle ahead of Brainy the squid on the track above" width="640" height="360" loading="lazy">
+              <img src="img/shots/8ctomath-2.webp" alt="8ctoMath results: 30 of 30 right, eight starfish, faster than Brainy, two sticker packs to open, and higher levels in adding, times tables and big times" width="640" height="360" loading="lazy">
+              <img src="img/shots/8ctomath-3.webp" alt="8ctoMath sticker book: the coral reef page with ten stickers placed among the coral towers" width="640" height="360" loading="lazy">
+              <img src="img/shots/8ctomath-4.webp" alt="8ctoMath parents&rsquo; area: one child&rsquo;s level for each of the five kinds of calculation, with the past week&rsquo;s questions, mistakes and days played" width="640" height="360" loading="lazy">
+            </div>
+            <div class="links">
+              <a href="https://8cto.net">8cto.net</a>
+              <a href="https://play.google.com/store/apps/details?id=io.a51.octomath">Google&nbsp;Play</a>
+            </div>
+          </div>
+        </details>
+      </li>
+
+      <li>
+        <details class="card">
+          <summary>
+            <div class="row">
+              <div class="icon"><img src="img/syvt.webp" alt="SYVT app icon" width="56" height="56"></div>
+              <div class="name">
+                <h3>SYVT</h3>
+                <span class="meta">Android &middot; Free</span>
+              </div>
+              <div class="text">
+                <p class="tag">A spelling game where words fall from the sky. Swipe right if a word is spelled correctly, left if it is not.</p>
+                <span class="more">See more</span>
+              </div>
+              <div class="preview" aria-hidden="true">
+                <img src="img/shots/syvt-1.webp" alt="" width="400" height="888" loading="lazy">
+                <img src="img/shots/syvt-2.webp" alt="" width="400" height="888" loading="lazy">
+                <img src="img/shots/syvt-3.webp" alt="" width="400" height="888" loading="lazy">
+              </div>
+              <span class="chev" aria-hidden="true"></span>
+            </div>
+          </summary>
+          <div class="body">
+            <p>A word swiped the wrong way drops onto a pile at the bottom &mdash; green if it was right all along, red if it was not &mdash; and the round ends when the pile reaches the top. Now and then a calculation falls instead. English, German and French each have 3,000 words over ten levels, with six worlds for children and two quiet ones for grown-ups.</p>
+            <div class="shots">
+              <img src="img/shots/syvt-1.webp" alt="SYVT round in the Space world at level 1: &ldquo;water&rdquo; and the misspelled &ldquo;cirkus&rdquo; falling towards a pile of green and red tiles" width="400" height="888" loading="lazy">
+              <img src="img/shots/syvt-2.webp" alt="SYVT in the Dinosaurs world at level 2: a calculation disc reading 8 &minus; 2 = 6 falling towards a pile of green and red discs, with the word &ldquo;whole&rdquo; among them" width="400" height="888" loading="lazy">
+              <img src="img/shots/syvt-3.webp" alt="SYVT on the grown-ups&rsquo; side: the Dark world at level 9, with &ldquo;perimeter&rdquo; falling and the misspelled &ldquo;insomia&rdquo; piled in red beside green tiles" width="400" height="888" loading="lazy">
+            </div>
+            <div class="links">
+              <a href="https://syvt.me">syvt.me</a>
+              <a href="https://play.google.com/store/apps/details?id=io.a51.syvt">Google&nbsp;Play</a>
+            </div>
+          </div>
+        </details>
+      </li>
+
+      <li>
         <details class="card soon">
           <summary>
             <div class="row">
@@ -486,6 +597,9 @@ footer .copy{margin-left:auto}
     <a href="https://vivevo.net">vivevo</a>
     <a href="https://qizu.net">QIZU</a>
     <a href="FOCUSQUARE/">FOCUSQUARE</a>
+    <a href="https://zoevo.io">zoevo</a>
+    <a href="https://8cto.net">8ctoMath</a>
+    <a href="https://syvt.me">SYVT</a>
     <span class="copy">&copy; A51</span>
   </div>
 </footer>
