@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FOCUSQUARE — focus timer</title>
-<meta name="description" content="FOCUSQUARE — simple focus timer for Android with 8 customizable presets and cross-device sync. One tap. Full focus.">
+<meta name="description" content="FOCUSQUARE — simple focus timer for Android, iPhone and iPad with 8 customizable presets and cross-device sync. One tap. Full focus.">
 <meta name="theme-color" content="#0C0C0C">
 <meta property="og:title" content="FOCUSQUARE — focus timer">
 <meta property="og:description" content="Simple focus timer with 8 customizable presets and cross-device sync. One tap. Full focus.">
@@ -85,6 +85,8 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--white);outline-off
 .play:hover{background:var(--red);color:var(--white)}
 .play:hover .tri{border-left-color:var(--white)}
 .free{margin-top:14px;color:var(--gray);font-size:.88rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+/* Until the App Store page is live; then an App Store button joins the Google Play one. */
+.soon{margin-top:6px;color:var(--gray);font-size:.88rem;letter-spacing:.06em;font-weight:600}
 
 .hero-art{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.8vw,22px)}
 .hero-art .hsq{aspect-ratio:1;border-radius:var(--r);display:grid;place-items:center}
@@ -207,6 +209,7 @@ footer .copy{margin-left:auto;color:var(--gray);font-size:.92rem}
         <p class="pitch">One tap. Full focus.</p>
         <a class="play" href="https://play.google.com/store/apps/details?id=io.a51.focusquare"><span class="tri" aria-hidden="true"></span>Get it on Google&nbsp;Play</a>
         <p class="free">Free &middot; Android &middot; In&#8209;app purchases</p>
+        <p class="soon">iPhone &amp; iPad: coming soon to the App&nbsp;Store</p>
       </div>
     </div>
     <div class="hero-art" aria-hidden="true">
@@ -280,13 +283,13 @@ footer .copy{margin-left:auto;color:var(--gray);font-size:.92rem}
       </li>
       <li class="feat">
         <div class="sq c-gold"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg></div>
-        <h3>Home-screen widgets</h3>
-        <p>Start without opening the app. <strong>FOCUSQUARE+</strong></p>
+        <h3>Widgets</h3>
+        <p>Start without opening the app: home screen, and on iPhone also Lock Screen and Control Center. <strong>FOCUSQUARE+</strong></p>
       </li>
       <li class="feat">
         <div class="sq c-green"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a2 2 0 0 0 2-2h-4a2 2 0 0 0 2 2zm6-6v-5a6 6 0 0 0-5-5.91V4a1 1 0 1 0-2 0v1.09A6 6 0 0 0 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
-        <h3>Live notification</h3>
-        <p>Countdown and progress in the shade.</p>
+        <h3>Live countdown</h3>
+        <p>In the notification shade on Android, on the Lock Screen and in the Dynamic Island on iPhone (iOS&nbsp;26).</p>
       </li>
       <li class="feat">
         <div class="sq c-teal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h3v8H4zM10.5 4h3v16h-3zM17 8h3v12h-3z"/></svg></div>
@@ -296,7 +299,7 @@ footer .copy{margin-left:auto;color:var(--gray);font-size:.92rem}
       <li class="feat">
         <div class="sq c-dgreen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4V1L8 5l4 4V6a6 6 0 0 1 5.65 8.03l1.46 1.46A8 8 0 0 0 12 4zm0 14a6 6 0 0 1-5.65-8.03L4.89 8.51A8 8 0 0 0 12 20v3l4-4-4-4v3z"/></svg></div>
         <h3>Cross-device sync</h3>
-        <p>Optional sign-in. Guest mode works fully.</p>
+        <p>Optional sign-in with Apple or Google. Guest mode works fully.</p>
       </li>
     </ul>
     <p class="plus"><strong>FOCUSQUARE+</strong> — eight timers instead of four, more colors and icons, full history, widgets.</p>
@@ -307,8 +310,8 @@ footer .copy{margin-left:auto;color:var(--gray);font-size:.92rem}
       <span class="ticks" aria-hidden="true"><i class="c-red"></i><i class="c-blue"></i><i class="c-gold"></i><i class="c-green"></i><i class="c-teal"></i><i class="c-dgreen"></i></span>
     </h2>
     <div class="band">
-      <h3>The timer lives in your notification&nbsp;shade.</h3>
-      <p>Countdown and progress right in the notification — pause and resume from there. It keeps counting even if the app is killed, and rings an exact alarm at the end.</p>
+      <h3>The timer keeps running outside the&nbsp;app.</h3>
+      <p>On Android, countdown and progress sit right in the notification — pause and resume from there. On iPhone with iOS&nbsp;26 or later, they sit on the Lock Screen and in the Dynamic Island. It keeps counting even when the app is closed, and an alarm rings at the end.</p>
       <img src="img/shot-notification.png" width="720" height="265" alt="Live notification with a 41:28 countdown, progress bar and a Pause action">
     </div>
     <div class="shots">
@@ -335,6 +338,7 @@ footer .copy{margin-left:auto;color:var(--gray);font-size:.92rem}
     <h2>One tap.<br><span class="hollow">Full focus.</span></h2>
     <a class="play" href="https://play.google.com/store/apps/details?id=io.a51.focusquare"><span class="tri" aria-hidden="true"></span>Get it on Google&nbsp;Play</a>
     <p class="free">Free &middot; Android &middot; In&#8209;app purchases</p>
+    <p class="soon">iPhone &amp; iPad: coming soon to the App&nbsp;Store</p>
   </section>
 
 </main>
